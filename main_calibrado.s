@@ -33,63 +33,50 @@
 	// Calibradas empíricamente con osciloscopio (sin I-cache, DRAM)
 	//
 	// Nota   F[Hz]   delay_alto  delay_bajo   reps
-	// DO     261.63    10801       11303       1570  (calibrado ✓)
-	// RE     293.66     9590       10037       1762  (calibrado ✓)
-	// MI     329.63     8553        8951       1978  (calibrado ✓)
-	// FA     349.23     8037        8409       2096  (calibrado ✓)
-	// SOL    392.00     7216        7551       2352  (calibrado ✓)
-	// LA     440.00     6393        6692       2640  (calibrado ✓)
-	// SI     493.88     5720        5986       2964  (calibrado ✓)
+	// DO     261.63     8311        8698       1570  (medido: 262 Hz ✓)
+	// RE     293.66     7411        7756       1762  (medido: 294 Hz ✓)
+	// MI     329.63     6587        6894       1978  (medido: 330 Hz ✓)
+	// FA     349.23     6237        6527       2096  (medido: 350 Hz ✓)
+	// SOL    392.00     5546        5804       2352  (medido: 392 Hz ✓)
+	// LA     440.00     4952        5184       2640  (medido: 440 Hz ✓)  (medido: 440 Hz ✓)
+	// SI     493.88     4414        4619       2964  (medido: 494 Hz ✓)
+	// SI     493.88     (pendiente)
 
 infloop:
-	ldr W2, =10801
-	ldr W6, =11303
+	ldr W2, =8311
+	ldr W6, =8698
 	ldr W3, =1570
 	bl  play_note		// DO  261.63 Hz
-	ldr W4, =4357000
-	bl  delay
 
-	ldr W2, =9590
-	ldr W6, =10037
+	ldr W2, =7411
+	ldr W6, =7756
 	ldr W3, =1762
 	bl  play_note		// RE  293.66 Hz
-	ldr W4, =4357000
-	bl  delay
 
-	ldr W2, =8553
-	ldr W6, =8951
+	ldr W2, =6587
+	ldr W6, =6894
 	ldr W3, =1978
 	bl  play_note		// MI  329.63 Hz
-	ldr W4, =4357000
-	bl  delay
 
-	ldr W2, =8037
-	ldr W6, =8409
+	ldr W2, =6237
+	ldr W6, =6527
 	ldr W3, =2096
 	bl  play_note		// FA  349.23 Hz
-	ldr W4, =4357000
-	bl  delay
 
-	ldr W2, =7216
-	ldr W6, =7551
+	ldr W2, =5546
+	ldr W6, =5804
 	ldr W3, =2352
 	bl  play_note		// SOL 392.00 Hz
-	ldr W4, =4357000
-	bl  delay
 
-	ldr W2, =6393
-	ldr W6, =6692
+	ldr W2, =4952
+	ldr W6, =5184
 	ldr W3, =2640
 	bl  play_note		// LA  440.00 Hz
-	ldr W4, =4357000
-	bl  delay
 
-	ldr W2, =5720
-	ldr W6, =5986
+	ldr W2, =4414
+	ldr W6, =4619
 	ldr W3, =2964
 	bl  play_note		// SI  493.88 Hz
-	ldr W4, =4357000
-	bl  delay
 
 	b infloop
 
@@ -109,11 +96,6 @@ delay_low:
 
 	subs W3, W3, 1
 	b.ne note_period
-	ret
-
-delay:
-	subs W4, W4, 1
-	b.ne delay
 	ret
 
 CoreLoop:

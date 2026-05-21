@@ -1,0 +1,7 @@
+main.o
+main.elf
+main.hex
+main.list
+main.hex
+kernel8.img
+memory_map.txt
